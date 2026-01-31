@@ -3,6 +3,9 @@
   "private": true,
   "packageManager": "pnpm@9.15.0",
   "scripts": {
+    "openapi:generate": "cd apps/api && DJANGO_SETTINGS_MODULE=careos_api.settings.test uv run python manage.py generate_openapi --output ../../openapi.json",
+    "sdk:generate": "python3 scripts/sdk/generate.py",
+    "sdk:check": "python3 scripts/sdk/generate.py --check",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "lint": "turbo run lint",

@@ -14,7 +14,12 @@
     "jsx": "react-jsx",
     "incremental": true,
     "baseUrl": ".",
-    "paths": {},
+    "paths": {
+      "@careos/sdk": ["../../packages/sdk/src/index.ts"],
+      "@careos/sdk/*": ["../../packages/sdk/src/*"],
+      "@careos/types": ["../../packages/types/src/index.ts"],
+      "@careos/types/*": ["../../packages/types/src/*"]
+    },
     "plugins": [
       {
         "name": "next"

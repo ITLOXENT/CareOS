@@ -3,12 +3,15 @@ UV ?= uv
 GUARDRAILS_DIR := scripts/guardrails
 API_DIR := apps/api
 
-.PHONY: lint typecheck test build verify guardrails format-check audit secret-scan iac
+.PHONY: lint typecheck test build verify guardrails format-check audit secret-scan iac openapi sdk-check
 
 guardrails:
 	@$(PYTHON) $(GUARDRAILS_DIR)/check_no_placeholders.py
 	@$(PYTHON) $(GUARDRAILS_DIR)/check_no_secrets.py
 	@$(PYTHON) $(GUARDRAILS_DIR)/check_iac.py
+
+openapi:
+	@cd $(API_DIR) && DJANGO_SETTINGS_MODULE=careos_api.settings.test $(UV) run python manage.py generate_openapi --output ../../openapi.json
 
 lint: guardrails
 	@pnpm -r lint
@@ -39,4 +42,7 @@ secret-scan: guardrails
 iac: guardrails
 	@$(PYTHON) $(GUARDRAILS_DIR)/check_iac.py
 
-verify: lint format-check typecheck test audit secret-scan iac build
+sdk-check: openapi
+	@$(PYTHON) scripts/sdk/generate.py --check
+
+verify: lint format-check typecheck test audit secret-scan iac sdk-check build

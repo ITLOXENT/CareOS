@@ -16,6 +16,16 @@ repos:
         entry: python scripts/guardrails/check_iac.py
         language: system
         pass_filenames: false
+      - id: openapi-generate
+        name: OpenAPI generate
+        entry: pnpm run openapi:generate
+        language: system
+        pass_filenames: false
+      - id: sdk-check
+        name: SDK generation check
+        entry: pnpm run sdk:check
+        language: system
+        pass_filenames: false
       - id: lint-python
         name: Ruff lint
         entry: bash -c "cd apps/api && python -m ruff check ."

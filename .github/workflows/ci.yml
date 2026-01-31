@@ -41,6 +41,12 @@ jobs:
           python scripts/guardrails/check_no_secrets.py
           python scripts/guardrails/check_iac.py
 
+      - name: Generate OpenAPI schema
+        run: pnpm run openapi:generate
+
+      - name: SDK generation check
+        run: pnpm run sdk:check
+
       - name: Lint (JS)
         run: pnpm -r lint
 
