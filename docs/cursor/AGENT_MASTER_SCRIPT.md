@@ -1,6 +1,7 @@
 CareOS Cursor Agent Master Script
 
 How to run this
+
 - Execute milestones in order from docs/cursor/MILESTONES/
 - For each milestone:
   - Paste the "Cursor Agent Prompt" block into Cursor Agent
@@ -25,6 +26,7 @@ Milestone index
 14_PROD_READINESS_AND_GO_LIVE
 
 Global invariants (must hold after every milestone)
+
 - Lint passes (python + ts)
 - Typecheck passes (python + ts)
 - Tests pass
@@ -33,6 +35,7 @@ Global invariants (must hold after every milestone)
 - Docs updated when required
 
 Primary verification commands (adjust only if tools differ)
+
 - Python:
   - cd apps/api && uv run ruff check . && uv run ruff format --check .
   - cd apps/api && uv run mypy .

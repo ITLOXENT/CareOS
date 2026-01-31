@@ -1,6 +1,7 @@
 # 13_INTEROP_FRAMEWORK_WITH_SIMULATORS
 
 ## Cursor Agent Prompt
+
 ```text
 Implement integration framework with production-safe simulators.
 
@@ -20,6 +21,7 @@ Tests:
 ```
 
 ## Verification Commands
+
 ```text
 cd apps/api && uv run pytest -q
 pnpm -r build
@@ -27,7 +29,7 @@ pnpm -r build
 ```
 
 ## Acceptance Checks
+
 - Interop messages can be drafted, queued, processed, and reach final status in simulator mode.
 - Every step is audited.
 - Simulator mode is disabled by default in production config.
-

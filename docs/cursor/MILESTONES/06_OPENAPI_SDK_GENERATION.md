@@ -1,6 +1,7 @@
 # 06_OPENAPI_SDK_GENERATION
 
 ## Cursor Agent Prompt
+
 ```text
 Add OpenAPI generation in apps/api and typed SDK generation into packages/sdk and packages/types.
 
@@ -18,6 +19,7 @@ Update docs/architecture/contracts.md describing the contract workflow.
 ```
 
 ## Verification Commands
+
 ```text
 pnpm -r typecheck
 cd apps/api && uv run pytest -q
@@ -25,7 +27,7 @@ cd apps/api && uv run pytest -q
 ```
 
 ## Acceptance Checks
+
 - packages/sdk contains a generated client.
 - web-admin and web-portal import from packages/sdk.
 - CI includes a job that regenerates schema and fails if drift is detected.
-

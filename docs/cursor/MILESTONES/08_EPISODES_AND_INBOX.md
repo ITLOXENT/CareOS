@@ -1,6 +1,7 @@
 # 08_EPISODES_AND_INBOX
 
 ## Cursor Agent Prompt
+
 ```text
 Implement Episodes and Work Inbox end-to-end.
 
@@ -31,6 +32,7 @@ Tests:
 ```
 
 ## Verification Commands
+
 ```text
 cd apps/api && uv run pytest -q
 pnpm -r build
@@ -38,7 +40,7 @@ pnpm -r build
 ```
 
 ## Acceptance Checks
+
 - Staff can create an episode, view it in inbox, transition state, and see timeline events.
 - Every transition creates EpisodeEvent and AuditEvent.
 - Tenant isolation is verified by tests.
-

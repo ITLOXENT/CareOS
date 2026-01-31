@@ -1,6 +1,7 @@
 # 14_PROD_READINESS_AND_GO_LIVE
 
 ## Cursor Agent Prompt
+
 ```text
 Finalize production readiness and go-live pipeline.
 
@@ -26,6 +27,7 @@ Acceptance:
 ```
 
 ## Verification Commands
+
 ```text
 cd infra/terraform && terraform fmt -recursive
 cd infra/terraform/envs/dev && terraform validate
@@ -33,7 +35,7 @@ cd infra/terraform/envs/dev && terraform validate
 ```
 
 ## Acceptance Checks
+
 - Stage environment deploys from CI with approvals.
 - Smoke tests run and pass.
 - Evidence artifacts generation is documented and runnable.
-

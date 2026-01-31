@@ -1,6 +1,7 @@
 # 05_API_KERNEL_TENANCY_RBAC_AUDIT
 
 ## Cursor Agent Prompt
+
 ```text
 Implement backend core kernel in apps/api.
 
@@ -23,6 +24,7 @@ Update compliance docs with real file paths for implemented controls.
 ```
 
 ## Verification Commands
+
 ```text
 cd apps/api && uv run ruff check .
 cd apps/api && uv run mypy .
@@ -31,8 +33,8 @@ cd apps/api && uv run pytest -q
 ```
 
 ## Acceptance Checks
+
 - Creating an Organization and Membership is possible via management command or admin-only endpoint.
 - Requests without tenant context are rejected (except public endpoints).
 - /me returns current user and tenant context.
 - AuditEvent is created on any write operation and is queryable with RBAC.
-

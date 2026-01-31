@@ -1,6 +1,7 @@
 # 07_WEB_ADMIN_SHELL
 
 ## Cursor Agent Prompt
+
 ```text
 Implement web-admin staff dashboard shell with secure auth and RBAC-aware navigation.
 
@@ -21,6 +22,7 @@ No business workflows yet beyond listing placeholder pages and wiring SDK calls 
 ```
 
 ## Verification Commands
+
 ```text
 pnpm -r build
 pnpm -r typecheck
@@ -28,7 +30,7 @@ pnpm -r typecheck
 ```
 
 ## Acceptance Checks
+
 - Staff can login and see a dashboard.
 - /me is called via packages/sdk.
 - Unauthorized users cannot access protected routes.
-

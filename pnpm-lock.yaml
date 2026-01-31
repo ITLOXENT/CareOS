@@ -16,6 +16,9 @@ importers:
 
   .:
     devDependencies:
+      prettier:
+        specifier: 3.8.1
+        version: 3.8.1
       turbo:
         specifier: 2.3.3
         version: 2.3.3
@@ -41,8 +44,14 @@ importers:
       '@types/react':
         specifier: 19.2.0
         version: 19.2.0
+      '@typescript-eslint/eslint-plugin':
+        specifier: 8.54.0
+        version: 8.54.0(@typescript-eslint/parser@8.54.0(eslint@9.39.2)(typescript@5.7.2))(eslint@9.39.2)(typescript@5.7.2)
+      '@typescript-eslint/parser':
+        specifier: 8.54.0
+        version: 8.54.0(eslint@9.39.2)(typescript@5.7.2)
       eslint:
-        specifier: ^9.39.2
+        specifier: ^9.26.0
         version: 9.39.2
       metro-react-native-babel-preset:
         specifier: ^0.77.0
@@ -121,6 +130,12 @@ importers:
       '@types/node':
         specifier: 22.10.1
         version: 22.10.1
+      '@typescript-eslint/eslint-plugin':
+        specifier: 8.54.0
+        version: 8.54.0(@typescript-eslint/parser@8.54.0(eslint@9.39.2)(typescript@5.7.2))(eslint@9.39.2)(typescript@5.7.2)
+      '@typescript-eslint/parser':
+        specifier: 8.54.0
+        version: 8.54.0(eslint@9.39.2)(typescript@5.7.2)
       eslint:
         specifier: ^9.26.0
         version: 9.39.2
@@ -133,6 +148,12 @@ importers:
       '@types/node':
         specifier: 22.10.1
         version: 22.10.1
+      '@typescript-eslint/eslint-plugin':
+        specifier: 8.54.0
+        version: 8.54.0(@typescript-eslint/parser@8.54.0(eslint@9.39.2)(typescript@5.7.2))(eslint@9.39.2)(typescript@5.7.2)
+      '@typescript-eslint/parser':
+        specifier: 8.54.0
+        version: 8.54.0(eslint@9.39.2)(typescript@5.7.2)
       eslint:
         specifier: ^9.26.0
         version: 9.39.2
@@ -5036,7 +5057,7 @@ snapshots:
       eslint: 9.39.2
       eslint-import-resolver-node: 0.3.9
       eslint-import-resolver-typescript: 3.10.1(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.54.0(eslint@9.39.2)(typescript@5.7.2))(eslint@9.39.2))(eslint@9.39.2)
-      eslint-plugin-import: 2.32.0(@typescript-eslint/parser@8.54.0(eslint@9.39.2)(typescript@5.7.2))(eslint-import-resolver-typescript@3.10.1)(eslint@9.39.2)
+      eslint-plugin-import: 2.32.0(@typescript-eslint/parser@8.54.0(eslint@9.39.2)(typescript@5.7.2))(eslint-import-resolver-typescript@3.10.1(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.54.0(eslint@9.39.2)(typescript@5.7.2))(eslint@9.39.2))(eslint@9.39.2))(eslint@9.39.2)
       eslint-plugin-jsx-a11y: 6.10.2(eslint@9.39.2)
       eslint-plugin-react: 7.37.5(eslint@9.39.2)
       eslint-plugin-react-hooks: 7.0.1(eslint@9.39.2)
@@ -5073,7 +5094,7 @@ snapshots:
       tinyglobby: 0.2.15
       unrs-resolver: 1.11.1
     optionalDependencies:
-      eslint-plugin-import: 2.32.0(@typescript-eslint/parser@8.54.0(eslint@9.39.2)(typescript@5.7.2))(eslint-import-resolver-typescript@3.10.1)(eslint@9.39.2)
+      eslint-plugin-import: 2.32.0(@typescript-eslint/parser@8.54.0(eslint@9.39.2)(typescript@5.7.2))(eslint-import-resolver-typescript@3.10.1(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.54.0(eslint@9.39.2)(typescript@5.7.2))(eslint@9.39.2))(eslint@9.39.2))(eslint@9.39.2)
     transitivePeerDependencies:
       - supports-color
 
@@ -5156,7 +5177,7 @@ snapshots:
       - eslint-import-resolver-webpack
       - supports-color
 
-  eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.54.0(eslint@9.39.2)(typescript@5.7.2))(eslint-import-resolver-typescript@3.10.1)(eslint@9.39.2):
+  eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.54.0(eslint@9.39.2)(typescript@5.7.2))(eslint-import-resolver-typescript@3.10.1(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.54.0(eslint@9.39.2)(typescript@5.7.2))(eslint@9.39.2))(eslint@9.39.2))(eslint@9.39.2):
     dependencies:
       '@rtsao/scc': 1.1.0
       array-includes: 3.1.9

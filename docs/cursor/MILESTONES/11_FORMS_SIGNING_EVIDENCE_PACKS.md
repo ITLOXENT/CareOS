@@ -1,6 +1,7 @@
 # 11_FORMS_SIGNING_EVIDENCE_PACKS
 
 ## Cursor Agent Prompt
+
 ```text
 Implement forms, signing, and evidence pack generation.
 
@@ -29,6 +30,7 @@ Tests:
 ```
 
 ## Verification Commands
+
 ```text
 cd apps/api && uv run pytest -q
 pnpm -r build
@@ -36,7 +38,7 @@ pnpm -r build
 ```
 
 ## Acceptance Checks
+
 - Evidence pack includes event IDs, hashes, signatures.
 - Evidence pack generation is deterministic in tests.
 - Evidence pack is downloadable from admin UI.
-

@@ -1,6 +1,7 @@
 # 04_COMPLIANCE_PACK
 
 ## Cursor Agent Prompt
+
 ```text
 Create compliance documentation pack aligned to NHS DTAC, DSPT, clinical safety, GDPR, HIPAA, and ISO 27001 readiness.
 
@@ -26,13 +27,14 @@ Each mapping must include:
 ```
 
 ## Verification Commands
+
 ```text
 ls -la docs/compliance
 
 ```
 
 ## Acceptance Checks
+
 - All required docs exist and contain substantive content (not outlines).
 - Each mapping doc includes control objectives and evidence generation sections.
 - No empty sections.
-

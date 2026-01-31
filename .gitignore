@@ -1,15 +1,47 @@
+# macOS
 .DS_Store
+
+# Env files
 .env
 .env.*
+!.env.example
+
+# Logs
 *.log
+
+# Python bytecode / caches
 __pycache__/
 *.pyc
-.node_modules/
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Virtual environments
+.venv/
+venv/
+
+# Node / package managers
+node_modules/
+.pnpm-store/
+
+# Frontend build outputs
 dist/
 build/
-.next/
 coverage/
+.next/
+out/
+
+# Terraform
 .terraform/
 terraform.tfstate
 terraform.tfstate.*
-node_modules
+crash.log
+crash.*.log
+
+# Generic workspace/editor (optional but recommended)
+.vscode/
+.idea/
+**/*.egg-info/
+*.egg-info/

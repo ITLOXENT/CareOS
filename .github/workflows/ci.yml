@@ -1,0 +1,74 @@
+name: ci
+
+on:
+  pull_request:
+  push:
+    branches: ["main"]
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Install JS dependencies
+        run: pnpm install
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install uv
+          cd apps/api && uv pip install -r requirements.txt -r requirements-dev.txt
+
+      - name: Guardrails checks
+        run: |
+          python scripts/guardrails/check_no_placeholders.py
+          python scripts/guardrails/check_no_secrets.py
+          python scripts/guardrails/check_iac.py
+
+      - name: Lint (JS)
+        run: pnpm -r lint
+
+      - name: Format check (JS)
+        run: pnpm exec prettier --check .
+
+      - name: Typecheck (JS)
+        run: pnpm -r typecheck
+
+      - name: Tests (JS)
+        run: pnpm -r test --if-present
+
+      - name: Build (JS)
+        run: pnpm -r build --if-present
+
+      - name: Lint (Python)
+        run: cd apps/api && python -m ruff check .
+
+      - name: Format check (Python)
+        run: cd apps/api && python -m ruff format --check .
+
+      - name: Typecheck (Python)
+        run: cd apps/api && python -m mypy .
+
+      - name: Tests (Python)
+        run: cd apps/api && python -m pytest -q
+
+      - name: Dependency audit
+        run: |
+          cd apps/api && python -m pip_audit -r requirements.txt -r requirements-dev.txt
+          pnpm audit

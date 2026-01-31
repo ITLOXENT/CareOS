@@ -1,6 +1,7 @@
 # 02_CI_AND_PRECOMMIT
 
 ## Cursor Agent Prompt
+
 ```text
 Implement CI and pre-commit hooks that enforce quality gates.
 
@@ -21,6 +22,7 @@ Update root README with exact developer commands.
 ```
 
 ## Verification Commands
+
 ```text
 pnpm -r lint
 pnpm -r typecheck
@@ -33,8 +35,8 @@ cd apps/api && uv run pytest -q
 ```
 
 ## Acceptance Checks
+
 - .github/workflows contains CI that runs on pull_request.
 - CI fails if lint/typecheck/tests fail.
 - Pre-commit equivalent exists and is documented.
 - Running make verify passes locally.
-

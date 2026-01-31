@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
+    "test": "node -e \"console.log('no tests yet')\"",
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },
   "dependencies": {

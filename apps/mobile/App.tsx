@@ -13,11 +13,11 @@ const styles = StyleSheet.create({
   container: {
     alignItems: "center",
     flex: 1,
-    justifyContent: "center"
+    justifyContent: "center",
   },
   title: {
     fontSize: 20,
     fontWeight: "600",
-    marginBottom: 8
-  }
+    marginBottom: 8,
+  },
 });

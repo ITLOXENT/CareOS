@@ -1,6 +1,7 @@
 # 12_AI_ARTIFACTS_APPROVAL_GATES
 
 ## Cursor Agent Prompt
+
 ```text
 Implement AI artifacts with approval gates.
 
@@ -27,6 +28,7 @@ Tests:
 ```
 
 ## Verification Commands
+
 ```text
 cd apps/api && uv run pytest -q
 pnpm -r build
@@ -34,7 +36,7 @@ pnpm -r build
 ```
 
 ## Acceptance Checks
+
 - AI suggestions appear as artifacts pending review.
 - Approvals are recorded and audited.
 - System blocks any attempt to use unapproved artifacts.
-

@@ -1,6 +1,7 @@
 # 09_PICKUP_AND_NOTIFICATIONS
 
 ## Cursor Agent Prompt
+
 ```text
 Implement pickup readiness + notifications with outbox pattern.
 
@@ -30,6 +31,7 @@ Tests:
 ```
 
 ## Verification Commands
+
 ```text
 cd apps/api && uv run pytest -q
 pnpm -r build
@@ -37,7 +39,7 @@ pnpm -r build
 ```
 
 ## Acceptance Checks
+
 - Marking an episode "ready" triggers notification via outbox worker.
 - Notification delivery status updates are visible in admin.
 - Mobile receives push and then fetches details via authenticated API.
-

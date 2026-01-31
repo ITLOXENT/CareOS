@@ -16,24 +16,24 @@ module.exports = [
       "babel.config.js",
       "metro.config.js",
       "jest.config.*",
-      "eslint.config.*"
-    ]
+      "eslint.config.*",
+    ],
   },
 
   {
     files: ["**/*.{js,jsx}"],
-    ...js.configs.recommended
+    ...js.configs.recommended,
   },
 
   ...tseslint.configs.recommended,
 
   {
-    files: ["src/**/*.{ts,tsx}"],
+    files: ["**/*.{ts,tsx}"],
     languageOptions: {
       parserOptions: {
         project: ["./tsconfig.json"],
-        tsconfigRootDir: __dirname
-      }
-    }
-  }
+        tsconfigRootDir: __dirname,
+      },
+    },
+  },
 ];

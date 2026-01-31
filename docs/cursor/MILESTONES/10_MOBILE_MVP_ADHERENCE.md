@@ -1,6 +1,7 @@
 # 10_MOBILE_MVP_ADHERENCE
 
 ## Cursor Agent Prompt
+
 ```text
 Implement mobile MVP for adherence and caregiver.
 
@@ -24,6 +25,7 @@ Tests:
 ```
 
 ## Verification Commands
+
 ```text
 pnpm -r build
 pnpm -r typecheck
@@ -32,7 +34,7 @@ cd apps/api && uv run pytest -q
 ```
 
 ## Acceptance Checks
+
 - Patient can set medication schedule and confirm doses.
 - Missed dose creates an event and optional caregiver notification.
 - Patient can submit feedback, and staff sees a work item in inbox.
-

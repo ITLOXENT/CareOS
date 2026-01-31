@@ -1,6 +1,7 @@
 # 01_MONOREPO_SCAFFOLD
 
 ## Cursor Agent Prompt
+
 ```text
 Scaffold the monorepo structure with pinned versions and deterministic tooling.
 
@@ -32,6 +33,7 @@ Do not implement business features yet. Only scaffold runnable apps with hello p
 ```
 
 ## Verification Commands
+
 ```text
 pnpm -v
 pnpm -r lint || true
@@ -42,9 +44,9 @@ cd apps/api && python -V
 ```
 
 ## Acceptance Checks
+
 - apps/api can start (dev server) and serves a health endpoint.
 - apps/web-admin builds and has a basic route.
 - apps/web-portal builds and has a basic route.
 - apps/mobile can compile at least one platform in CI (or local) with a default screen.
 - No business logic beyond health/hello.
-

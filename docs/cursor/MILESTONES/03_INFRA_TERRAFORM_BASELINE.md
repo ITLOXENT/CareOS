@@ -1,6 +1,7 @@
 # 03_INFRA_TERRAFORM_BASELINE
 
 ## Cursor Agent Prompt
+
 ```text
 Build AWS Terraform baseline with secure defaults and environment separation.
 
@@ -23,6 +24,7 @@ No manual console steps required.
 ```
 
 ## Verification Commands
+
 ```text
 cd infra/terraform && terraform fmt -recursive
 cd infra/terraform/envs/dev && terraform init -backend=false
@@ -31,7 +33,7 @@ cd infra/terraform/envs/dev && terraform validate
 ```
 
 ## Acceptance Checks
+
 - Terraform code is formatted and validates.
 - envs are separated and modules exist.
 - docs/architecture/infra.md exists with a clear diagram and notes.
-
