@@ -45,3 +45,6 @@ crash.*.log
 .idea/
 **/*.egg-info/
 *.egg-info/
+
+# Local dev DB
+apps/api/db.sqlite3

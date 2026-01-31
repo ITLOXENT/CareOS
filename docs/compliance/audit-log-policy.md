@@ -23,5 +23,5 @@ Access Controls
 - Logs are write-once and access is least-privileged.
 - Access is monitored and reviewed.
 
-Implementation location: pending (replace with specific repo path).
+Implementation location: `apps/api/core/models.py`, `apps/api/core/views.py`, `apps/api/careos_api/logging.py`.
 Evidence artifacts: log schemas, retention settings, access reviews.

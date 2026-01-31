@@ -1,4 +1,5 @@
 ruff==0.14.14
 mypy==1.19.1
 pytest==9.0.2
+pytest-django==4.11.1
 pip-audit==2.10.0

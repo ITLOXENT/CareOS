@@ -3,10 +3,16 @@ from __future__ import annotations
 import os
 from pathlib import Path
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parents[2]
 
-SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "dev-insecure-key")
+DJANGO_ENV = os.environ.get("DJANGO_ENV", "dev")
 DEBUG = os.environ.get("DJANGO_DEBUG", "true").lower() == "true"
+SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
+if not SECRET_KEY:
+    if DJANGO_ENV in {"prod", "production"} and not DEBUG:
+        raise RuntimeError("DJANGO_SECRET_KEY is required in production.")
+    SECRET_KEY = "dev-insecure-key"
+
 ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", "*").split(",")
 
 INSTALLED_APPS = [
@@ -15,6 +21,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "core.apps.CoreConfig",
 ]
 
 MIDDLEWARE = [
@@ -25,6 +32,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "core.middleware.TenantMiddleware",
 ]
 
 ROOT_URLCONF = "careos_api.urls"
@@ -64,3 +72,22 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "filters": {"redact": {"()": "careos_api.logging.RedactionFilter"}},
+    "formatters": {
+        "standard": {
+            "format": "%(asctime)s %(levelname)s %(name)s %(message)s",
+        }
+    },
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+            "filters": ["redact"],
+            "formatter": "standard",
+        }
+    },
+    "root": {"handlers": ["console"], "level": "INFO"},
+}

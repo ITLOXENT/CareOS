@@ -1,13 +1,6 @@
-from __future__ import annotations
-
-from django.http import JsonResponse
-from django.urls import path
-
-
-def health(_request):
-    return JsonResponse({"status": "ok"})
+from django.urls import include, path
 
 
 urlpatterns = [
-    path("health/", health),
+    path("", include("core.urls")),
 ]
