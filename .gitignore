@@ -48,3 +48,7 @@ crash.*.log
 
 # Local dev DB
 apps/api/db.sqlite3
+
+# Python
+__pycache__/
+*.py[cod]
