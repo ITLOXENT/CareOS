@@ -1,0 +1,25 @@
+# Compliance Evidence Rules (NHS + HIPAA + ISO 27001 readiness)
+
+## Required Evidence Artifacts
+- Threat model and data flow diagrams must exist in docs/compliance/.
+- Audit log policy and retention/deletion policy must exist.
+- For each mapped control, provide:
+  - implementation location (file paths)
+  - how to generate evidence artifact (command/output)
+  - operational procedure if applicable
+
+## NHS Readiness
+- Maintain DTAC mapping doc and keep it updated.
+- Maintain DSPT readiness mapping.
+- Maintain clinical risk management plan (developer-side).
+
+## HIPAA Readiness
+- Maintain HIPAA Security Rule mapping focusing on administrative, physical, technical safeguards.
+- Maintain access controls, audit controls, integrity controls, transmission security evidence.
+
+## ISO 27001 Readiness
+- Maintain an ISMS evidence structure under docs/compliance/isms/
+- Include risk register template, control mapping, incident response plan.
+
+## Build-time Evidence Generation
+- Evidence packs, audit exports, and access logs must be generatable by commands, not manual edits.

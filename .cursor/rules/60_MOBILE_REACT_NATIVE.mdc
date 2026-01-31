@@ -1,0 +1,29 @@
+# Mobile App (React Native) Rules
+
+## Stack Baseline
+- React Native 0.83 line
+- Use secure storage for tokens
+- Push notifications must not include sensitive details in payload
+
+## Functional MVP Requirements
+- Medication schedule: reminders, taken confirmation, missed-dose tracking
+- Pickup updates: push receive + in-app status view
+- Caregiver mode: permissioned alerts
+- Feedback submission: creates staff WorkItem
+
+## Security
+- Prevent screenshots on sensitive screens where platform allows.
+- Token storage in platform secure store.
+- Network calls via TLS only.
+
+## Dev Safety
+- Dev servers should not bind to public interfaces by default.
+- Document safe dev configuration for teams.
+
+## Testing
+- Typecheck mandatory
+- Minimal unit tests for reminder scheduling logic
+- Build smoke test in CI (at least compile)
+
+## Reliability
+- Offline-friendly: queue submissions and retry when online

@@ -1,0 +1,40 @@
+# Terraform + AWS Rules (DevSecOps)
+
+## Baseline Architecture (MVP)
+- Environments: dev, stage, prod
+- Networking:
+  - VPC, private subnets
+  - NAT for egress
+  - VPC endpoints where appropriate
+- Compute:
+  - ECS Fargate services for api and web apps (or EKS if explicitly chosen)
+  - ALB in front, HTTPS via ACM
+  - WAF attached to ALB
+- Data:
+  - RDS PostgreSQL with KMS encryption, backups, PITR
+  - Redis/ElastiCache as needed
+  - S3 for artifacts with KMS encryption
+- Secrets:
+  - AWS Secrets Manager or SSM Parameter Store
+- Logging:
+  - CloudWatch logs, metrics, alarms
+
+## IAM
+- Least privilege roles for each service.
+- No wildcard policies unless justified and documented.
+
+## Terraform Hygiene
+- Remote state with locking
+- terraform fmt/validate required
+- tflint + IaC security scan required
+- Modules per concern (network, db, compute, security, observability)
+
+## Deployment Pipeline
+- Plan on PR
+- Apply only with approval for stage/prod
+- Post-deploy smoke test
+
+## Acceptance
+- terraform validate passes
+- plans are reproducible
+- no manual console steps required

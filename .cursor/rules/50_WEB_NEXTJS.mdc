@@ -1,0 +1,32 @@
+# Web Apps (Next.js) Rules
+
+## Stack Baseline
+- Next.js 16.1 or latest stable patch within 16.x
+- TypeScript strict mode
+- Centralized API access via packages/sdk
+
+## Security
+- Implement secure auth flows with CSRF protections as applicable.
+- Enforce role-based route guards in UI, but server remains authoritative.
+- Add security headers (CSP where feasible, HSTS in prod, frame protections).
+
+## Data Handling
+- Never store PHI in localStorage.
+- Prefer in-memory state or secure cookies (if needed).
+- Avoid exposing sensitive details in error messages.
+
+## UI Acceptance
+- Provide minimal, functional admin UX:
+  - Inbox list + filters
+  - Episode detail with timeline
+  - Pickup status updates
+  - Evidence pack export
+  - AI artifact review/approve/reject
+
+## Testing
+- Typecheck is mandatory.
+- Add smoke tests for critical routes.
+- Validate SDK contract usage (no raw fetch).
+
+## Observability
+- Capture client errors to a logging sink (configured later) without PHI.

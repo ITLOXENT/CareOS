@@ -1,0 +1,53 @@
+# Backend (Django + DRF) Rules
+
+## Stack Baseline
+- Django 6.0.1 or later patch within 6.0.x line
+- DRF compatible with Django 6.x
+- PostgreSQL as primary data store
+- Redis + Celery for background jobs
+
+## Project Structure
+- Use explicit app modules (core, authn, tenancy, episodes, notifications, evidence, ai, interop)
+- Services layer for business logic; views should orchestrate only
+- Strict settings separation: base, dev, test, prod
+
+## Multi-Tenancy Enforcement
+- Middleware sets request.tenant (Organization) and request.site context
+- Every queryset is tenant-filtered
+- Serializer validation must check tenant ownership for referenced objects
+
+## RBAC
+- Define roles and permissions centrally.
+- Enforce both route-level and object-level permissions.
+
+## State Machines
+- Episodes must use an explicit state machine with:
+  - allowed transitions
+  - validation rules
+  - event emission to EpisodeEvent
+  - audit event creation
+
+## Outbox Pattern
+- All external side effects (push/sms/email/interop sends) must go through an Outbox table.
+- Workers process outbox with retries and record delivery status.
+- No "fire and forget" from request thread.
+
+## Event Chain (Tamper-evident)
+- EpisodeEvent records must store:
+  - prev_hash
+  - hash
+  - canonical payload hash
+- Hashing must be deterministic and tested.
+
+## API
+- Provide OpenAPI schema
+- Provide versioned endpoints if needed
+- Rate limit sensitive endpoints
+
+## Testing
+- Unit tests: tenancy, RBAC, transitions, hashing
+- Integration tests: episodes flow, notification outbox, evidence generation
+
+## Error Handling
+- No broad exceptions.
+- Translate domain errors into consistent API error responses.

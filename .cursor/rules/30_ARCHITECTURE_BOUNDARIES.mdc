@@ -1,0 +1,39 @@
+# Architecture Boundaries
+
+## Monorepo Boundaries
+apps/api
+- Owns: domain models, business logic, audit, notifications, integrations, AI artifacts, OpenAPI
+- Exposes: OpenAPI contract consumed by packages/sdk
+
+apps/web-admin
+- Owns: staff UX, operational workflows, admin dashboards
+- Uses: packages/sdk only for API access, no hand-written API clients
+
+apps/web-portal
+- Owns: patient/caregiver UX (thin client)
+- Uses: packages/sdk only for API access
+
+apps/mobile
+- Owns: patient mobile experience and push handling
+- Uses: packages/sdk (or a mobile-friendly API client generated from OpenAPI)
+
+packages/sdk
+- Generated client from OpenAPI and stable DTO types
+- No business logic
+
+infra/terraform
+- Idempotent AWS deployments
+- Environment separation dev/stage/prod
+- Least privilege and encryption defaults
+
+docs/
+- Compliance mappings, architecture decisions, runbooks, evidence pointers
+
+## Prohibited Coupling
+- Web/mobile must not implement business rules that belong in api.
+- api must not embed UI assumptions.
+- No direct DB access outside apps/api.
+
+## Contract Discipline
+- API changes require OpenAPI update + SDK regen + web/mobile updates in the same milestone.
+- Breaking changes require versioning or a migration plan.

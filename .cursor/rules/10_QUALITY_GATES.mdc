@@ -1,0 +1,49 @@
+# Quality Gates and Engineering Standards
+
+## Repository Tooling Requirements (must exist before feature work)
+- Python:
+  - ruff for lint + format
+  - mypy for typing
+  - pytest for tests
+  - pip-audit (or equivalent) for dependency audit
+- Node/TypeScript:
+  - eslint + typescript strict
+  - prettier
+  - typecheck in CI
+  - dependency audit (pnpm audit + additional tooling if available)
+- Terraform:
+  - terraform fmt
+  - terraform validate
+  - tflint (or equivalent)
+  - tfsec (or equivalent) or a comparable IaC security scanner
+
+## Enforced CI
+CI must run on every PR and block merge unless all checks pass:
+- formatting
+- lint
+- typecheck
+- tests
+- dependency security scan
+- secret scan
+
+## Pre-commit
+A pre-commit workflow must exist and be documented:
+- local hooks for lint/format/typecheck
+- deterministic and fast
+
+## Test Strategy (MVP)
+- Unit tests for core kernel logic: tenancy, RBAC, state transitions, audit.
+- Integration tests for: episodes flow, notification outbox, evidence pack generation.
+- Contract tests for OpenAPI SDK generation and usage.
+
+## Version Discipline
+- Pin key framework versions in lock files.
+- Upgrade quickly on security advisories and document the upgrade path.
+
+## Definition of Done (per milestone)
+- lint passes
+- typecheck passes
+- tests pass
+- builds succeed
+- acceptance checks executed
+- docs updated if required

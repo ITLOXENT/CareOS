@@ -1,0 +1,43 @@
+# AI Safety and Governance Rules
+
+## Purpose
+AI is used only for:
+- triage suggestions
+- drafting structured notes
+- completeness checks
+- summarizing evidence packs
+- adherence risk scoring (non-diagnostic)
+
+## Prohibited
+- Diagnosis
+- Treatment recommendations
+- Medical advice
+- Autonomous external sending of clinical-impact messages
+
+## Human-in-the-Loop
+- AIArtifact is required for any AI output that influences workflow.
+- AIArtifact must store:
+  - input references (hashed)
+  - output payload
+  - model and version
+  - confidence score
+  - reviewer decision and timestamp
+- AI outputs require explicit approval before they can:
+  - update an Episode state
+  - be included in Evidence Pack exports
+  - be sent via interop channels
+
+## Prompt/Policy Versioning
+- Each AI capability must have a policy template version.
+- Log policy version with every artifact.
+
+## Data Protection
+- Minimize PHI in prompts.
+- Do not send unnecessary identifiers to AI providers.
+- Provide a redaction layer and log redaction decisions.
+
+## Testing
+- Tests must verify:
+  - approval is required
+  - audit events are written
+  - outputs are deterministic under test stubs

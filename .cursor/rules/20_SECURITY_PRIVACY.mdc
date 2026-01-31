@@ -1,0 +1,47 @@
+# Security and Privacy Rules (Healthcare-grade)
+
+## Baseline Standards
+- OWASP Top 10 protections (input validation, auth, access control, logging, SSRF, XSS, CSRF, etc.)
+- Encryption in transit: TLS everywhere
+- Encryption at rest: DB, object storage, backups
+- Least privilege IAM for AWS resources
+- Secrets are never committed. Use AWS Secrets Manager/SSM in deployed environments.
+
+## Authentication and Session Security
+- Use secure cookies for web sessions (HttpOnly, Secure, SameSite).
+- Enforce MFA for staff accounts in non-dev environments (MVP can be optional but must exist).
+- Rate-limit auth endpoints (login, OTP, password reset).
+
+## Data Minimization
+- Store the minimum patient data required for workflow.
+- Separate identifiers (e.g., NHS number) from demographic fields.
+- Never log PHI in plaintext.
+
+## Audit Logging
+- All writes create AuditEvent records with:
+  - actor, tenant, object type/id, action, timestamp, ip/user-agent where applicable
+- Audit logs are append-only.
+
+## File Upload Security
+- Virus scan uploads asynchronously.
+- Quarantine until scanned.
+- Validate file types and enforce size limits.
+
+## Notifications Security
+- Avoid leaking sensitive medical details via SMS/push.
+- Push payloads should be generic (e.g., "You have an update") and fetch details in-app after auth.
+
+## Mobile Dev Server Exposure
+- Do not expose Metro dev server on external interfaces in shared networks.
+- Ensure dev tooling binds to localhost unless explicitly configured.
+- Treat developer tooling as untrusted; do not rely on dev-only protections.
+
+## Vulnerability Response
+- Add automated dependency scanning and scheduled updates.
+- Document an emergency patch process.
+
+## Security Testing
+- SAST on PRs
+- IaC scanning on PRs
+- Secret scanning on PRs
+- Runtime headers checks for web apps (CSP, HSTS where applicable)
