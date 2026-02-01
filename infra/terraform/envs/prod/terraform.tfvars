@@ -5,3 +5,7 @@ app_port      = 8080
 db_port       = 5432
 desired_count = 2
 enable_nat    = true
+sentry_environment = "prod"
+sentry_release = "careos-api-prod"
+sentry_traces_sample_rate = 0.1
+sentry_send_default_pii = false

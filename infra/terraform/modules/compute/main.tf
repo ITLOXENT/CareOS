@@ -61,6 +61,26 @@ resource "aws_ecs_task_definition" "api" {
         {
           name  = "ENVIRONMENT"
           value = var.name
+        },
+        {
+          name  = "SENTRY_DSN"
+          value = var.sentry_dsn
+        },
+        {
+          name  = "SENTRY_ENVIRONMENT"
+          value = var.sentry_environment
+        },
+        {
+          name  = "SENTRY_RELEASE"
+          value = var.sentry_release
+        },
+        {
+          name  = "SENTRY_TRACES_SAMPLE_RATE"
+          value = tostring(var.sentry_traces_sample_rate)
+        },
+        {
+          name  = "SENTRY_SEND_DEFAULT_PII"
+          value = var.sentry_send_default_pii ? "true" : "false"
         }
       ]
     }

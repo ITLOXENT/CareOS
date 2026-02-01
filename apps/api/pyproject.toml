@@ -5,8 +5,15 @@ description = "CareOS API service"
 requires-python = ">=3.12"
 dependencies = [
   "Django==6.0.1",
+  "celery==5.4.0",
+  "redis==5.0.8",
+  "sentry-sdk[django]",
+  "stripe==10.6.0",
 ]
 
 [build-system]
 requires = ["setuptools>=69"]
 build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["core", "careos_api"]

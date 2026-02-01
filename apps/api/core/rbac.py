@@ -4,26 +4,77 @@ from dataclasses import dataclass
 
 
 class Role:
-    OWNER = "OWNER"
     ADMIN = "ADMIN"
-    MEMBER = "MEMBER"
-    AUDITOR = "AUDITOR"
+    STAFF = "STAFF"
+    VIEWER = "VIEWER"
 
     @classmethod
     def choices(cls) -> list[tuple[str, str]]:
         return [
-            (cls.OWNER, "Owner"),
             (cls.ADMIN, "Admin"),
-            (cls.MEMBER, "Member"),
-            (cls.AUDITOR, "Auditor"),
+            (cls.STAFF, "Staff"),
+            (cls.VIEWER, "Viewer"),
         ]
 
 
 PERMISSIONS = {
-    Role.OWNER: {"audit:view", "org:manage", "team:manage"},
-    Role.ADMIN: {"audit:view", "org:manage", "team:manage"},
-    Role.MEMBER: {"org:read"},
-    Role.AUDITOR: {"audit:view", "org:read"},
+    Role.ADMIN: {
+        "audit:view",
+        "org:manage",
+        "team:manage",
+        "org:read",
+        "episode:read",
+        "episode:write",
+        "work:read",
+        "work:write",
+        "ai:write",
+        "ai:review",
+        "patient:read",
+        "patient:write",
+        "patient:merge",
+        "evidence:read",
+        "evidence:write",
+        "evidence:link",
+        "evidence:tag",
+        "notification:read",
+        "notification:write",
+        "message:read",
+        "message:write",
+        "integration:read",
+        "integration:write",
+    },
+    Role.STAFF: {
+        "org:read",
+        "episode:read",
+        "episode:write",
+        "work:read",
+        "work:write",
+        "ai:write",
+        "ai:review",
+        "patient:read",
+        "patient:write",
+        "patient:merge",
+        "evidence:read",
+        "evidence:write",
+        "evidence:link",
+        "evidence:tag",
+        "notification:read",
+        "notification:write",
+        "message:read",
+        "message:write",
+        "integration:read",
+        "integration:write",
+    },
+    Role.VIEWER: {
+        "org:read",
+        "episode:read",
+        "work:read",
+        "evidence:read",
+        "notification:read",
+        "notification:write",
+        "message:read",
+        "integration:read",
+    },
 }
 
 
@@ -41,4 +92,4 @@ def has_permission(role: str, permission: str) -> PermissionCheck:
 
 
 def is_valid_role(role: str) -> bool:
-    return role in {Role.OWNER, Role.ADMIN, Role.MEMBER, Role.AUDITOR}
+    return role in {Role.ADMIN, Role.STAFF, Role.VIEWER}

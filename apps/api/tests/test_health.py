@@ -11,6 +11,25 @@ from core.rbac import Role
 def test_health_route_is_registered(client) -> None:
     response = client.get("/health/")
     assert response.status_code == 200
+    payload = response.json()
+    assert "status" in payload
+    assert "timestamp" in payload
+    assert "version" in payload
+    assert "build_sha" in payload
+    assert "db_ok" in payload
+
+
+@pytest.mark.django_db
+def test_healthz_route_is_registered(client) -> None:
+    response = client.get("/healthz/")
+    assert response.status_code == 200
+    assert response.json() == {"status": "ok"}
+
+
+@pytest.mark.django_db
+def test_readyz_route_is_registered(client) -> None:
+    response = client.get("/readyz/")
+    assert response.status_code == 200
     assert response.json() == {"status": "ok"}
 
 
@@ -18,7 +37,7 @@ def test_health_route_is_registered(client) -> None:
 def test_tenant_scoping_sets_current_org(client) -> None:
     user = get_user_model().objects.create_user(username="alice", password="pass")
     org = Organization.objects.create(name="CareOS", slug="careos")
-    Membership.objects.create(user=user, organization=org, role=Role.OWNER)
+    Membership.objects.create(user=user, organization=org, role=Role.ADMIN)
 
     client.force_login(user)
     response = client.get("/orgs/current/")
@@ -28,10 +47,10 @@ def test_tenant_scoping_sets_current_org(client) -> None:
 
 
 @pytest.mark.django_db
-def test_rbac_denies_audit_events_for_member(client) -> None:
+def test_rbac_denies_audit_events_for_viewer(client) -> None:
     user = get_user_model().objects.create_user(username="bob", password="pass")
     org = Organization.objects.create(name="CareOS", slug="careos")
-    Membership.objects.create(user=user, organization=org, role=Role.MEMBER)
+    Membership.objects.create(user=user, organization=org, role=Role.VIEWER)
     AuditEvent.objects.create(
         organization=org,
         actor=None,
@@ -47,10 +66,10 @@ def test_rbac_denies_audit_events_for_member(client) -> None:
 
 
 @pytest.mark.django_db
-def test_rbac_allows_audit_events_for_auditor(client) -> None:
+def test_rbac_allows_audit_events_for_admin(client) -> None:
     user = get_user_model().objects.create_user(username="cora", password="pass")
     org = Organization.objects.create(name="CareOS", slug="careos")
-    Membership.objects.create(user=user, organization=org, role=Role.AUDITOR)
+    Membership.objects.create(user=user, organization=org, role=Role.ADMIN)
     AuditEvent.objects.create(
         organization=org,
         actor=None,

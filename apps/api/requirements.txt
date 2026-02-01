@@ -1,1 +1,5 @@
 Django==6.0.1
+celery==5.4.0
+redis==5.0.8
+sentry-sdk[django]
+stripe==10.6.0

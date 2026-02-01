@@ -49,6 +49,11 @@ module "compute" {
   app_port              = var.app_port
   desired_count         = var.desired_count
   domain_name           = var.domain_name
+  sentry_dsn            = var.sentry_dsn
+  sentry_environment    = var.sentry_environment
+  sentry_release        = var.sentry_release
+  sentry_traces_sample_rate = var.sentry_traces_sample_rate
+  sentry_send_default_pii   = var.sentry_send_default_pii
 }
 
 module "observability" {

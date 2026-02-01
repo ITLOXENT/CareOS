@@ -1,6 +1,12 @@
 {
   "compilerOptions": {
     "target": "ES2022",
+    "lib": ["dom", "es2022"],
+    "baseUrl": ".",
+    "paths": {
+      "@careos/types": ["../types/src/index.ts"],
+      "@careos/types/*": ["../types/src/*"]
+    },
     "module": "esnext",
     "moduleResolution": "bundler",
     "declaration": true,

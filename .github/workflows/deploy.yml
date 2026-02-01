@@ -1,0 +1,29 @@
+name: deploy
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Target environment (stage or prod)"
+        required: true
+        default: "stage"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Install JS dependencies
+        run: pnpm install
+      - name: Deploy services
+        run: ./scripts/deploy/ecs_deploy.sh
+      - name: Smoke tests
+        env:
+          SMOKE_BASE_URL: ${{ vars.SMOKE_BASE_URL }}
+        run: python3 scripts/smoke_test.py

@@ -44,8 +44,14 @@ jobs:
       - name: Generate OpenAPI schema
         run: pnpm run openapi:generate
 
+      - name: OpenAPI drift check
+        run: git diff --exit-code openapi.json
+
       - name: SDK generation check
         run: pnpm run sdk:check
+
+      - name: SDK drift check
+        run: git diff --exit-code packages/sdk packages/types
 
       - name: Lint (JS)
         run: pnpm -r lint
@@ -72,7 +78,7 @@ jobs:
         run: cd apps/api && python -m mypy .
 
       - name: Tests (Python)
-        run: cd apps/api && python -m pytest -q
+        run: cd apps/api && uv run pytest -q
 
       - name: Dependency audit
         run: |

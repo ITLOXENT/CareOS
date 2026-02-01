@@ -1,1 +1,1 @@
-export type HealthStatus = "ok";
+export * from "./openapi";

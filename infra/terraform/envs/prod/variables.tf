@@ -36,3 +36,33 @@ variable "enable_nat" {
   description = "Enable NAT gateway."
   default     = true
 }
+
+variable "sentry_dsn" {
+  type        = string
+  description = "Sentry DSN."
+  default     = ""
+}
+
+variable "sentry_environment" {
+  type        = string
+  description = "Sentry environment."
+  default     = "prod"
+}
+
+variable "sentry_release" {
+  type        = string
+  description = "Sentry release."
+  default     = ""
+}
+
+variable "sentry_traces_sample_rate" {
+  type        = number
+  description = "Sentry traces sample rate."
+  default     = 0.1
+}
+
+variable "sentry_send_default_pii" {
+  type        = bool
+  description = "Enable Sentry default PII."
+  default     = false
+}
